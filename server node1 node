@@ -5,7 +5,8 @@ bash
 yum install git -y
 git init --bare
 vim /etc/ssh/sshd_config
-vim /etc/ssh/sshd_config
+permitloginroot -- yes
+passwordauthentication -- yes
 systemctl restart sshd
 systemctl enable sshd
 mkdir project
