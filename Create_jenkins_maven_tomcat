@@ -13,8 +13,9 @@ https://pkg.jenkins.io/redhat-stable/jenkins.repo
 http://your_amazon_linux_instance_ip:8080
 10)cat /var/lib/jenkins/secrets/initialAdminPassword
 ------------------------------------------------------
- To install git -- yum install git -y
-then add git repository
+ To install git -- yum install git -y in cmd
+then on jenkins server then click on new item give item name then chooseitem type to freestyle project
+add git repository
 paste link of https file
 then change branch master to main
 built trigger mei tick on box off github hook trigger 
