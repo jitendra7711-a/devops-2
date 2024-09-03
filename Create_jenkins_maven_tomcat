@@ -22,27 +22,14 @@ built trigger mei tick on box off github hook trigger
 then save 
  
 #Installation and configuration of maven
-1)ct /opt
-2)wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
-3)ls
-4)tar -xzvf apache-maven-3.9
-5)mv apache-maven-3.9.9 maven
-6)cd /bin
-7)./mvn -v
-8)cd ..
-9)cd ~
-10)pwd
-11)ll -a
-12)vim .bash-profile
-(below the fi
-M2_HOME =/opt/maven
-M2=/opt/maven/bin
-JAVA_HOME=/usr/lib/jvm/java-17-openjdk
-then save all changes
-)
-13)echo $PATH
-14)source .bash-profile
-15)echo $PATH
+    1 yum install maven
+    2  mvn -v
+    3  cd /var/lib/jenkins/workspace/new-job
+    4  ll
+    5  cd webapp
+    6  ll
+    7  cd target
+    8  ll
  
 #Install maven plugins and configure Jenkins for maven
 in Jenkins -> manage Jenkins -> plugins -> available plugins -> install maven integration
