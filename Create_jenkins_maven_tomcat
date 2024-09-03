@@ -1,3 +1,4 @@
+create one instances jenkin
 #How to Install and Configure Jenkins on Amazon Linux 2023
  
 1)dnf update
@@ -53,17 +54,18 @@ then add maven ==> name=maven , MAVEN_HOME= /opt/maven
 now manage Jenkins -> plugins -> Intsalled plugins -> Disable the GITHUB branch source plugins & enable GitHub plugin and restart
 install git in Jenkins server if not installed already
 -----------------------------------------------
-In Dev-server
+// In Dev-server
 1)clone the source code folder from repo (git clone gttpsurl)
 2)then checkout to our preffered branch
 3)then cd (folder which we have clone) 
 4)git remote remove origin
 5)git remote add origin (ssh_url)
-6)git push origin main --force
+6)git push origin main --force //
  
  
 =============================================================================================
 #Tomcat Installation
+create one instance tomcat-server
 1)dnf install java-17-amazon-corretto -y
 2)java --version
 3) from https://tomcat.apache.org/download-90.cgi this link cpoy core tar.gz file
