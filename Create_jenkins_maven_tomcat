@@ -22,8 +22,21 @@ built trigger mei tick on box off github hook trigger
 then save 
  
 #Installation and configuration of maven
+open jenkin browser click on configure then in current token add new token generate it and paste that it in 
+devops-2 setting in webhook in payloadurl copy jenkindashboard ip address/github-webhook/
+then in content select application/json  then click on addwebhook
+then again go to jenkin browser dashboard click on manage jenkins then go to plugins then available plugins search for
+maven integration and install it.
     1 yum install maven
     2  mvn -v
+then in jenkinbrowser click on installed plugins search for github branch source plugin unselect it and then restart it.sele
+login to jenkinbrowser and go to manage jenkin then select tools then click on add JDK in name mention JAVA then from cmd 
+select runtime: path and paste it in java_home then scroll down and click on add maven give name maven and unchecked-install 
+automatically then in maven home copy path from cmd maven home path then apply and save.
+then go to new-item enter file name then select maven project then ok then in source-code-management select git and in 
+repository-url and paste java file wala sanjaysir code devops-jenkins https file url then change branch name to main then 
+select github hook trigger then apply and save then click on build now then go to console output then select the command and 
+paste it in cmd
     3  cd /var/lib/jenkins/workspace/new-job
     4  ll
     5  cd webapp
