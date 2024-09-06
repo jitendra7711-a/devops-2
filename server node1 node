@@ -40,5 +40,15 @@ DEV-ONE:
 
 DEV-TWO:
 
-git clone root@172.31.7.164:project/
+1 yum install git
+2 mkdir /data2
+3 ssh-keygen
+4 ssh-copy-id root@172.31.44.75:/project
+5 ssh-copy-id root@172.31.44.75
+6 cd /data2
+7 git init
+8 git remote add origin
+9 git remote add origin root@172.31.44.75:/project
+10 git remote -v
+11 git pull origin master
  
