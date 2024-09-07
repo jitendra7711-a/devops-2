@@ -1,6 +1,7 @@
 CREATING CUSTOM AMI
 
-create instance in mumbai ---name:web-server---redhat----t2.small ---select existing key pair or create new ---subnet =1b -----sec group =existing or create new-----Launch 
+create instance in mumbai ---name:web-server---redhat----t2.small ---select existing key pair or 
+create new ---subnet =1b -----sec group =existing or create new-----Launch 
 instance
 
 select instance ----sec groups ----edit inbound rules ----http  ----custom ipv4----save rules------
