@@ -10,16 +10,13 @@ connect and go to cd-----
 
 rpmquery httpd
 yum install httpd -y
-cd /var/wwww/html/
-echo "This is My Dev-server on cloud "
+cd /var/www/html/
+echo "This is My Dev-server on cloud " > index.html
 cat index.html
 systemctl start httpd
-
 systemctl status httpd
 systemctl enable httpd
 ip a s
-
-
 
 
 go to aws instance web-server ----stop instance-----again start instance and connect agqin----cd-----
@@ -40,6 +37,7 @@ Create new instance with created custom ami
 
 While connecting via ssh, change root to ec2-user
 Copy public ip addr and check if it is shwoing content in index.html
+CMD:- cd /tmp/ --> ll 
 
 copy public ip of custom-instance -----go to google paste ip :80-----it shows echo statement that we put above
 
@@ -53,9 +51,7 @@ ll
 migrate 
 
 
-AWS dashboard>>select custom-ami
-
-Actions>>copy AMI
+AWS dashboard>>select custom-ami(image) --> Actions>>copy AMI
 
 Select Destination Region---singapore ---copy ami
 
@@ -63,7 +59,8 @@ Go to destination region
 
 In AMIs you will be able to see, custom AMI copied
 
-Create new instance with custom AMI-------------select ami----launch instance with ami -----name =singa-------any key pair ---any sec group ----subnet any except c ---launch
+Create new instance with custom AMI-------------select ami----launch instance with ami -----name =singa-------
+any key pair ---any sec group ----subnet any except c ---launch
 connect to singa ----cd-----when u paste just change root to ec2-user
 sudo su -
 cd /tmp
