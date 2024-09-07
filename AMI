@@ -19,7 +19,8 @@ systemctl enable httpd
 ip a s
 
 
-go to aws instance web-server ----stop instance-----again start instance and connect agqin----cd-----
+go to aws instance web-server ----stop instance-----again start instance and connect agqin----
+cd-----
 yum install vsftpd -y
 yum install cifs-utils -y
 yum install nfs-utils -y
