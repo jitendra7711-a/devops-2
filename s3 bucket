@@ -1,0 +1,9 @@
+go to aws ----search for S3 bucket---------open S3
+create bucket -------bucketname=aws-test-8015----------ACLS enabled --------untick  block all public access ------------ tick  I acknowledge    
+create bucket ---------
+click on the bucket --------upload file -----add file ----upload
+
+click on the uploaded file --------copy the obj url --------paste it on google ------acccess denieed  ----
+now go to permissions----edit -------everyone(public access) tick
+READ WRITE -------I understand click --------save changes ----------refresh ---------copy the obj url again ----
+paste on google ---------opens our file
