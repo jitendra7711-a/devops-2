@@ -1,0 +1,75 @@
+CREATING CUSTOM AMI
+
+create instance in mumbai ---name:web-server---redhat----t2.small ---select existing key pair or create new ---subnet =1b -----sec group =existing or create new-----Launch 
+instance
+
+select instance ----sec groups ----edit inbound rules ----http  ----custom ipv4----save rules------
+
+connect and go to cd-----
+
+rpmquery httpd
+yum install httpd -y
+cd /var/wwww/html/
+echo "This is My Dev-server on cloud "
+cat index.html
+systemctl start httpd
+
+systemctl status httpd
+systemctl enable httpd
+ip a s
+
+
+
+
+go to aws instance web-server ----stop instance-----again start instance and connect agqin----cd-----
+yum install vsftpd -y
+yum install cifs-utils -y
+yum install nfs-utils -y
+yum install tree -y
+cd /tmp/
+touch index.txt{1..100}
+cd /tmp/
+ll
+
+stop the instance-----actions ---img and templates----create img ---amis ---descr----IMAGE-----
+
+
+go to AMIS-----owned by me ---select amis----actions----launch instance from ami with same sec key  and subnet
+Create new instance with created custom ami
+
+While connecting via ssh, change root to ec2-user
+Copy public ip addr and check if it is shwoing content in index.html
+
+copy public ip of custom-instance -----go to google paste ip :80-----it shows echo statement that we put above
+
+
+cd /tmp
+ll
+
+
+
+
+migrate 
+
+
+AWS dashboard>>select custom-ami
+
+Actions>>copy AMI
+
+Select Destination Region---singapore ---copy ami
+
+Go to destination region
+
+In AMIs you will be able to see, custom AMI copied
+
+Create new instance with custom AMI-------------select ami----launch instance with ami -----name =singa-------any key pair ---any sec group ----subnet any except c ---launch
+connect to singa ----cd-----when u paste just change root to ec2-user
+sudo su -
+cd /tmp
+ll
+
+to see it on google ----elect singa--------security----sec group ----edit ----http-----anywhere ipv4-----saved
+copy public ip :80 paste on google
+
+
+You will be able to see all the data inside it.
