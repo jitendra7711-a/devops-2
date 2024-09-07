@@ -11,7 +11,6 @@ Route table --> create route table --> name(public-rt) --> select vpc --> create
 Create an instance --> name(web-server) --> create key pair name(hello-key) --> select your created VPC --> Subnet- Public --> public-ip Enable -->
    create group --> name(sg-group) --> Inbound Security Group Rules --> select http --> custom --> Launch instance
   
-// create rouble table public it (name) edit route - add route select igw
  
 CMD:- yum install httpd --> cd /var/www/html --> echo "this is my server" > index.html --> cd --> systemctl start httpd --> systemctl enable httpd -->
 Copy instance ip address and paste on browser and run
@@ -30,6 +29,20 @@ Create NAT Gateway --> name(test-ngw) --> Subnet- public --> Connectivity type- 
 Route table --> create route table --> name(private-rt) --> select vpc --> create
           select private --> route --> edit route --> add route --> 0.0.0.0/0 --> select nat gateway(ngw) --> ngw file --> save
           Edit subnet association --> select private subnet --> save 
+
+
+Follow the same Procedure in singapore region
+The only change is in VPC- CIDR- 20.0.0.0/16
+Subnet --> Create Subnet --> select your VPC --> name(public) --> Zone(ap-south-1a) --> subnetrange(20.0.0.0/24) --> create 
+          create another --> select vpc --> name (private) --> Zone(ap-south-1b) --> subnetrange(20.0.1.0/24) --> create 
+
+#######################################################################################################################################33333
+
+
+Peering Connections --> Mumbai to Singapore
+
+name(Mumbai-to-Singapore) --> Select your VPC --> my account --> another region (singapore) --> VPC ID- singapore-one --> create
+
 
 
  
