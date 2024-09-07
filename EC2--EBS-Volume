@@ -1,0 +1,150 @@
+Launch instance----- web-server----AWS---t2.micro -----create key pair -----6sep-key------network settings-----subnet 1b -----create security group ---6sep-sec----- 8gb---launch
+connect ssh key of instance web-server 
+sudo su -
+lsblk ------view ur available disk devices on instance
+
+AWS-----duplicate window ----go to EC2 volumes ----create volume----type=gp2-----size=5gb ------subnet=should be same as instance =ap-south-1b ------create volume------rename 
+volume by clicking on it ----data-disk------it will show available in vol state------select data-disk -----Actions ------atach vol ------select instamce =web-server-----
+device name=/dev/xvdbb ------atach vol -----go to instance web-server-----command line of web-server
+
+lsblk ----check if xvdbbb is present
+mkfs.ext4 /dev/xvdbb -----mkfs means make file system ----- from it choosing ext4 as file sysyt followed by volume id
+blkid -----format
+
+creating mount point for that make a directory inside root folder
+
+mkdir /data
+mount /dev/xvdbb /data/
+
+df-h ------we can see the ,mount point
+
+cd /data/
+
+creating sample files
+
+touch index.txt{1..100}
+ll ----view all the files
+
+above mount was temporary
+below is permanent mounting
+
+blkid -----copy UUID OF /dev/xvdbb
+
+
+vim /etc/fstab -----enter ----go inside the file----type UUID=(paste)     /data  ext4      defaults   0       0  ----esc key ---wq!
+
+df -h  
+
+go to aws instance state ---reboot instance (after rebooting check if mount is permanent
+
+df -h
+cd /data
+ll (to check if files are present)
+
+
+
+TASK - RESIZE THE DISK  (can be done only once)
+
+go to AWS ----go to volumes ----select data-disk-----action ----modify vol ----size (increased)=8 gb-----modify  -----go to cd
+
+
+lsblk ----- here we can see size of xvdbb as 8gb 
+df -h  ------but here usable is of 5 gb 
+resize2fs /dev/xvdbb 
+df -h ------------now after resizing size is 8 gb
+cd /data
+ll
+check ifexisting files are present then successful mount
+
+
+
+REDUCING VOLUME
+
+volume size can never be reduce ----the solution to do this is ----create a new volume with reqd size and transferring the data from old vol to newly created less sized vol
+
+rebbot instance web-server ----- create volume----data-2-----gp2(should be same as vol 1)-----size=6 -------ap south 1-b ---crreate vol----
+select data-2 ------actions ----atttach vol -----instance=web-server -----device name= /dev/xvdbc ---atach vol
+
+go to cd ---
+
+
+lsblk -----------(to check whether xvdbc  is present
+df -h -----------
+lsblk -fs -----------(file syst on xvdbb and xvdbc should be same bcoz we are transferring data from xvdbb to xvdbc 
+
+creating file syst
+
+mkfs.ext4 /dev/xvdbc
+
+mkdir /data2
+
+mount /dev/xvdbc /data2/
+
+df-h -----
+
+cd /data ------------going inside data to copy its files
+ll ------------display data
+
+mv * /data2 ------------moving all files to data 2
+
+cd 
+cd /data2
+ll
+
+now to remove mount ie xvdbb
+
+cd
+vim /etc/fstab -----------opens new window comment out  last line of UUID -----esc -save and exit
+
+systemctl daemon-reload
+umount /data
+df -h ------------we can see xvdbb is unmounted
+lsblk ------------xvdbb will be present here
+
+
+go to AWS ----- Select 1st vol ie data-disk ----actions-----detach ----again select data-disk --------delete
+
+
+
+
+RESIZE ROOT VOLUME
+
+
+df -h
+lsblk ------can see xvda is root and to resize vol of xvda1
+
+AWS-select instance ---web-server  ----- storage -----select vol with xvda annd click on vol id ---name it  =root-vol----actions ---modify vol ---size =12----modify
+
+
+lsblk ----------xvda is of size 12 
+go to google -type extend xfs filesystem copy comment from redhat
+
+growpart /dev/xvda 1 (include that file from df-h that has / in path)
+
+xfs_growfs -d /dev/xvda1
+
+df-h  ----size is increaed
+
+
+
+
+ACCCESS MUMBAI EC2 INSTANCE WITH SAME DATA FROM SINGAPORE
+
+
+Aws ----Singapore loc- ----launch new instance ----prod-server ---redhat ----t2.micro----slect existing key pair ----subnet---1b ---select existing sec-group----launch
+
+duplicate aws window --------go to mumbai loc -------vol --------data-2 selct----actions ----create snapshot -----descr---This iis data snapshot -----create --------
+go to snapshots --------Select data-2-snap by renaming it ------action -----copy snapshot--------select destination ------ap southeast 1 -------copy snapshot
+
+go to singapor inst -------snapshot----we can see the snapshot ----click on it ---------actions -----create vol from napshot ---gp2--size=7----avail zone =1b------create vol
+go to vol  -----select vol with 7gb ------actions ----attach vol  ----instance -prod-server ----------devce name=/dev/xvdbb -------atch vol-----connect to singapore inst
+
+command prompt
+
+sudo su -
+lsblk
+mkdir /tech
+mount /dev/xvdbb/tech
+df-h
+cd /tech
+ll
