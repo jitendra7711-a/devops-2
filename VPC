@@ -1,0 +1,35 @@
+// Lab:- How to change or jumb from public to private in same terminal
+
+Enter aws --> Search VPC --> Your VPC --> Create VPC --> VPC only --> Name(test-vpc) --> CIDR- 10.0.0.0/16 --> Create VPC
+Internet Gateway(igw) --> Create --> name(test-igw) --> Create --> Select igw --> action --> attach-to-vpc --> Select You VPC to attach 
+Subnet --> Create Subnet --> select your VPC --> name(public) --> Zone(ap-south-1a) --> subnetrange(10.0.0.0/24) --> create 
+          create another --> select vpc --> name (private) --> Zone(ap-south-1b) --> subnetrange(10.0.1.0/24) --> create 
+Route table --> create route table --> name(public-rt) --> select vpc --> create
+          select public --> route --> edit route --> add route --> 0.0.0.0/0 --> select internet gateway(igw) --> igw file --> save
+          Edit subnet association --> select public subnet --> save 
+ 
+Create an instance --> name(web-server) --> create key pair name(hello-key) --> select your created VPC --> Subnet- Public --> public-ip Enable -->
+   create group --> name(sg-group) --> Inbound Security Group Rules --> select http --> custom --> Launch instance
+  
+// create rouble table public it (name) edit route - add route select igw
+ 
+CMD:- yum install httpd --> cd /var/www/html --> echo "this is my server" > index.html --> cd --> systemctl start httpd --> systemctl enable httpd -->
+Copy instance ip address and paste on browser and run
+ 
+Create one private instance --> name(db server) --> key-pair same --> select your vpc --> subnet- private --> select existing group --> launch instance
+security --> edit inbound rules --> add- ALL ICMP-IPV4 --> Save.
+
+CMD:- ip a s (copy that ip)--> ping ip
+
+Open key file from downloads --> copy privatekey 
+
+CMD:- vim keyfilename(hii-key.pem) --> chmod 400 hii-key.pem --> copy and paste sshclientkey from instance
+
+Create NAT Gateway --> name(test-ngw) --> Subnet- public --> Connectivity type- public --> allocate elastic-ip --> create
+
+Route table --> create route table --> name(private-rt) --> select vpc --> create
+          select private --> route --> edit route --> add route --> 0.0.0.0/0 --> select nat gateway(ngw) --> ngw file --> save
+          Edit subnet association --> select private subnet --> save 
+
+
+ 
