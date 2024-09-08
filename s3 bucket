@@ -1,9 +1,42 @@
-go to aws ----search for S3 bucket---------open S3
-create bucket -------bucketname=aws-test-8015----------ACLS enabled --------untick  block all public access ------------ 
-tick  I acknowledge     create bucket ---------
-click on the bucket --------upload file -----add file ----upload
+go to aws---mumbai ----search for S3 bucket---------open S3
+create bucket -------bucketname=aws-test-8015----------ACLS enabled --------untick  block all public access -----
+------- tick  I acknowledge    create bucket ---------click on the bucket --------upload file -----add file ----upload
 
-click on the uploaded file --------copy the obj url --------paste it on google ------acccess denieed  ----
-now go to permissions----edit -------everyone(public access) tick
-READ WRITE -------I understand click --------save changes ----------refresh ---------copy the obj url again ----
-paste on google ---------opens our file
+go to myprofile----security credentials---click---access keys---create access key ----tick i understand---create
+copy both access and secret key-----download.csv file
+
+make duplicate 
+go to ec2 instance--create inst-----s3-inst---aws---t2.micro---existing key----1a---enale auto assign---existing group---
+launch----connect to it--cmd --paste---sudo su -
+
+// go to google---https://cloudkul.com/blog/mounting-s3-bucket-linux-ec2-instance/------
+// copy all commands for centa os in cmd one by one------
+
+cmd:
+
+yum update all
+sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+cd s3fs-fuse
+./autogen.sh
+./configure --prefix=/usr --with-openssl
+make
+sudo make install
+which s3fs
+touch /etc/passwd-s3fs
+vim /etc/passwd-s3fs   in step 7 ---(one step where we need to edit a file---vim something---paste access key:paste seret key)
+
+sudo chmod 640 /etc/passwd-s3fs
+mkdir /mys3bucket
+
+in step 9---do only a) give ur bucketname instead of the one given in command
+s3fs your_bucketname -o use_cache=/tmp -o allow_other -o uid=1001 -o mp_umask=002 -o multireq_max=5 /mys3bucket
+
+df-h(check bucket created)
+
+10) cd /mys3bucket
+ echo "this is a test file to check s3fs" >> test.txt
+ls
+
+now u can see test.txt in s3 bucket
+search s3 bucket-----buckets----aniket.....-----obj
