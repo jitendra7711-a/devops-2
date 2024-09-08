@@ -24,6 +24,7 @@ make
 sudo make install
 which s3fs
 touch /etc/passwd-s3fs
+                         ( open csv file from downloads)
 vim /etc/passwd-s3fs   in step 7 ---(one step where we need to edit a file---vim something---paste access key:paste seret key)
 
 sudo chmod 640 /etc/passwd-s3fs
