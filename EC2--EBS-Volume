@@ -86,7 +86,7 @@ mkdir /data2
 
 mount /dev/xvdbc /data2/
 
-df-h -----
+df -h -----
 
 cd /data ------------going inside data to copy its files
 ll ------------display data
@@ -119,7 +119,7 @@ RESIZE ROOT VOLUME
 df -h
 lsblk ------can see xvda is root and to resize vol of xvda1
 
-AWS-select instance ---web-server  ----- storage -----select vol with xvda annd click on vol id ---name it  =root-vol----
+select vol with xvda (second-one) annd click on vol id ---name it  =root-vol----
 actions ---modify vol ---size =12----modify
 
 
@@ -133,7 +133,7 @@ xfs_growfs -d /dev/xvda1
 df-h  ----size is increaed
 
 
-
+##################################################################################
 
 ACCCESS MUMBAI EC2 INSTANCE WITH SAME DATA FROM SINGAPORE
 
