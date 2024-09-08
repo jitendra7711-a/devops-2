@@ -13,7 +13,7 @@ Create an instance --> name(web-server) --> create key pair name(hello-key) --> 
   
  
 CMD:- yum install httpd --> cd /var/www/html --> echo "this is my server" > index.html --> cd --> systemctl start httpd --> systemctl enable httpd -->
-Copy instance ip address and paste on browser and run
+Copy instance ip address and paste on browser and run :80
  
 Create one private instance --> name(db server) --> key-pair same --> select your vpc --> subnet- private --> select existing group --> launch instance
 security --> edit inbound rules --> add- ALL ICMP-IPV4 --> Save.
@@ -43,6 +43,14 @@ Peering Connections --> Mumbai to Singapore
 
 name(Mumbai-to-Singapore) --> Select your VPC --> my account --> another region (singapore) --> VPC ID- singapore-one --> create
 
+cmd:- 
+ssh-keygen
+cd .ssh
+ll
+cat id_rsa.pub
+vim authorized_keys
+touch ji.txt{1..100}
+scp ji.txt root@13.229.103.232:/tmp
 
 
  
