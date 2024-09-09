@@ -37,7 +37,9 @@ df-h(check bucket created)
 
 10) cd /mys3bucket
  echo "this is a test file to check s3fs" >> test.txt
-ls
+ls -la
+touch jitendra.txt{1..10}  
+then go to bucket 
 
 now u can see test.txt in s3 bucket
 search s3 bucket-----buckets----aniket.....-----obj
