@@ -1,0 +1,4 @@
+Do in mumbai-- ----search cloud formation----click ----create stack----choose an existing temp ---upload template file----
+choose file (already downloaded ec2.yml) -----open file ---give key name as that we have in mumbai loc----save file
+cloud formation ---choose file---upload-----next-----stack name=st3----next---next----submit ---
+to check ---go to instances we can see the created instance
