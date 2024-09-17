@@ -1,0 +1,19 @@
+1  yum install docker -y
+    2  systemctl start docker
+    3  systemctl enable docker
+    4  yum install git -y
+    5  git clone
+https://github.com/abdulkadir18apr/Pallindrome-BirthDay.git
+    6  cd Palindrome-Birthday
+    7  ls
+    8  cd Pallindrome-BirthDay/
+    9  vim Dockerfile
+   10  docker build -t pallindrome-birthday .
+   11  docker run -d -p 80:80 pallindrome-birthday
+   12  aws configure
+   13  aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 122610503177.dkr.ecr.ap-southeast-1.amazonaws.com
+   14* docker tag lti-devops:latest 122610503177.dkr.ecr.ap-southeast-1.amazonaws.co:latest
+   15  docker images
+   16  docker tag lti-devops:latest 122610503177.dkr.ecr.ap-southeast-1.amazonaws.com/pallindrome-birthday:latest
+   17  docker tag pallindrome-birthday:latest 122610503177.dkr.ecr.ap-southeast-1.amazonaws.com/pallindrome-birthday:latest
+   18  docker push 122610503177.dkr.ecr.ap-southeast-1.amazonaws.com/pallindrome-birthday:latest
